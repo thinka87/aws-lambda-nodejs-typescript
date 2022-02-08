@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import AWS from 'aws-sdk';
 const s3 = new AWS.S3();
-
+//Using this function get json contents from URL
 export const getJsonByURL = async (URL: string) => {
     try {
         const response = await fetch(URL);
@@ -11,7 +11,7 @@ export const getJsonByURL = async (URL: string) => {
         console.log(error);
     }
 };
-
+//Using this function merge products and product images
 export const mergeProductsData = async (products: any, product_images: any, searchField: string) => {
 
     for (var i = 0; i < products.products.length; i++) {
@@ -23,7 +23,7 @@ export const mergeProductsData = async (products: any, product_images: any, sear
 
     return products;
 };
-
+//Using this function search prdocunts in json object by sku
 export const getProductBySku = async (products: any, searchField: string, sku: string) => {
     for (var i = 0; i < products.products.length; i++) {
         if (products.products[i][searchField] == sku) {
@@ -31,7 +31,7 @@ export const getProductBySku = async (products: any, searchField: string, sku: s
         }
     }
 };
-
+//Using this function uplaod files into S3
 export const uploadToS3 = async (bucket: string, key: string, body: string, content_type: string) => {
 
     const params = {
@@ -44,7 +44,7 @@ export const uploadToS3 = async (bucket: string, key: string, body: string, cont
     const s3Response = await s3.upload(params).promise();
     return s3Response;
 };
-
+//Using this function get files from S3
 export const getS3File = async (bucket: string, key: string) => {
 
     const params = {

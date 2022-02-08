@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v1.4.2
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install dependencies, Build application and Zip dist folder contents
+    - name: Install dependencies, test and build application and Zip dist folder contents to upload AWS lambda
       run: npm install && npm t && npm run build && zip -qq -r ./bundle.zip ./dist/*
 
     - name: serverless deploy

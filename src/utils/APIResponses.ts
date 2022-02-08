@@ -1,3 +1,4 @@
+//This class used to format all http responses
 class Responses {
     _DefineResponse(statusCode = 502, data = {}) {
         return {

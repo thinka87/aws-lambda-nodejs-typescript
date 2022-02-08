@@ -5,16 +5,17 @@ provider:
   runtime: nodejs14.x
   stage: dev
   region: us-east-1
-
+#get a s3 bucket
 custom:
   S3BucketName: ${self:service}-bucket-${self:provider.stage}
 
 plugins:
   - serverless-iam-roles-per-function
-
+#create lambda functions and define handlers
 functions:
   loadProdcuts:
     handler: dist/handler.loadProdcuts
+    #create api gateway endpoints
     events:
     - http:
           path: loadProdcuts
