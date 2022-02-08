@@ -1,0 +1,66 @@
+service: dw-prodcuts-api
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1
+
+custom:
+  S3BucketName: ${self:service}-bucket-${self:provider.stage}
+
+plugins:
+  - serverless-iam-roles-per-function
+
+functions:
+  loadProdcuts:
+    handler: dist/handler.loadProdcuts
+    events:
+    - http:
+          path: loadProdcuts
+          method: get
+
+    - eventBridge:
+         schedule: rate(60 minutes)
+
+
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "s3:Put*"
+        Resource: arn:aws:s3:::${self:custom.S3BucketName}/*
+    environment:
+      S3_BUCKET_NAME: ${self:custom.S3BucketName}
+
+    timeout: 30 # seconds
+    memorySize: 128 # mb
+
+  getProdcuts:
+    handler: dist/handler.getProdcuts
+    events:
+    - http:
+          path: getProdcuts/{sku}
+          method: get
+          
+    - http:
+          path: getProdcuts
+          method: get
+         
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "s3:Get*"
+        Resource: arn:aws:s3:::${self:custom.S3BucketName}/*
+    environment:
+      S3_BUCKET_NAME: ${self:custom.S3BucketName}
+
+    timeout: 30 # seconds
+    memorySize: 128 # mb
+
+resources:
+  Resources:
+    FileBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.S3BucketName}
+        AccessControl: Private
