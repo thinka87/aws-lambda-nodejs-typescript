@@ -2,6 +2,7 @@
 
 ## Technologies
 ***
+To view the architecture diagramme open dw_architecture.png
 A list of technologies used within the project:
 * node js with typescripts
 * AWS - Lamda,API Gateway,S3,Event bridge
