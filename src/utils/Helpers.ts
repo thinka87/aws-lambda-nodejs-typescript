@@ -14,9 +14,9 @@ export const getJsonByURL = async (URL: string) => {
 //Using this function merge products and product images
 export const mergeProductsData = async (products: any, product_images: any, searchField: string) => {
 
-    for (var i = 0; i < products.products.length; i++) {
+    for (let i = 0; i < products.products.length; i++) {
         if (products.products[i][searchField]) {
-            var image_obj = product_images.images[products.products[i][searchField]];
+            let image_obj = product_images.images[products.products[i][searchField]];
             products.products[i]["image_list"] = image_obj;
         }
     }
@@ -25,7 +25,7 @@ export const mergeProductsData = async (products: any, product_images: any, sear
 };
 //Using this function search prdocunts in json object by sku
 export const getProductBySku = async (products: any, searchField: string, sku: string) => {
-    for (var i = 0; i < products.products.length; i++) {
+    for (let i = 0; i < products.products.length; i++) {
         if (products.products[i][searchField] == sku) {
             return products.products[i];
         }
