@@ -1,4 +1,5 @@
-# D A N I E L W E L L I N G T O N  case interview by Thilina
+# AWS Lambda node js (typescript)
+
 
 ## Technologies
 ***
@@ -37,9 +38,5 @@ Steps
 * git hub action configs included in github\workflows\main.yml
 * To change load prodcuts data frequency, edit 'schedule: rate(60 minutes)' in serverless.yml
 
-## What I intentionally leave
-*** With time limitations 
-* Swagger integration
-* Some unit testing parts, But i have a good code coverage with current test cases (Please check unit_test_code_coverage.png )
 
 
