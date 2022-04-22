@@ -1,7 +1,7 @@
 {
-  "name": "dw-case-interview-by-thilina",
+  "name": "aws-lambda-nodejs-typescript",
   "version": "1.0.0",
-  "description": "",
+  "description": "aws-lambda-nodejs-typescript",
   "main": "index.js",
   "scripts": {
     "test": "jest --config=jest.config.js",
